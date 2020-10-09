@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.5.xsd
+	   http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd 
+	   http://www.springframework.org/schema/task 
+	   http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+
+	<context:annotation-config />
+
+	<context:component-scan base-package="br.com.chat" />
+
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="persistencia" />
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+
+	<tx:annotation-driven mode="proxy"
+		proxy-target-class="true" />
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<bean
+		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+
+	<bean id="placeholderConfig"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:ApplicationProps.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- <bean id="entityManager" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"> 
+		<property name="dataSource" ref="sqlServerDataSource"/> <property name="persistenceUnitName" 
+		value="persistencia"></property> <property name="persistenceXmlLocation" 
+		value="classpath:persistence.xml"/> </bean> -->
+
+	<!-- <tx:annotation-driven transaction-manager="txManager" /> -->
+
+	<!-- <bean id="sqlServerDataSource" class="org.apache.commons.dbcp.BasicDataSource"> 
+		<property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver" 
+		/> <property name="url" value="jdbc:mysql://localhost:3306/chatLine" /> <property 
+		name="username" value="root" /> <property name="password" value="" /> </bean> -->
+	<!-- <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager"> 
+		<property name="dataSource" ref="sqlServerDataSource" /> </bean> -->
+</beans>

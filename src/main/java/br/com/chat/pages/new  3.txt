@@ -1,0 +1,3 @@
+Radiobu t on
+Não carrega tipo de criterio quando altera
+colocando mesmo nome de opção criterio para criterios diferentes ativa validação de iguais

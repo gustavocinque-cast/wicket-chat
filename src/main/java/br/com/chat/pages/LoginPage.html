@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:wicket="http://wicket.apache.org">
+<head>
+<meta charset="utf-8"></meta>
+</head>
+<link rel="stylesheet" href="css/bootstrap.css">
+<wicket:extend>
+	<form wicket:id="formulario">
+
+		<div style="float:left; min-width:0px; width:40%; margin-top:10%; margin-left:30%;">
+			<div>
+				<div class="alert-danger" wicket:id="mensagensErro"></div>
+				<div class="alert-success" wicket:id="mensagensSucesso"></div>
+			</div>
+
+			<table class="table">
+				<tr>
+					<td style="text-align: right;">Login:</td>
+					<td><input style="width: 120px;" type="text" wicket:id="login" /></td>
+				</tr>
+				<tr>
+					<td style="text-align: right;">Senha:</td>
+					<td><input style="width: 120px;" type="password"
+						wicket:id="senha" /></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<button class="btn btn-default" style="width: 48%;" type="submit">Entrar</button>
+						<button class="btn btn-default" style="width: 48%;" wicket:id="cadastro">Cadastrar</button>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+	</form>
+</wicket:extend>
+</html>
